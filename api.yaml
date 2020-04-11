@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: api
+  namespace: aurora
+spec:
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: "hiring-api:latest"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+      imagePullSecrets:
+      - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: api
+  namespace: aurora
+spec:
+  ports:
+  - port: 8081
+    targetPort: 8081
+    nodePort: 30017
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: api
+
