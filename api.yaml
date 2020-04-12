@@ -7,12 +7,12 @@ spec:
   template:
     metadata:
       labels:
-        app: api
+      - app: api
     spec:
       containers:
       - name: api
         image: "hiring-api:latest"
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent 
         ports:
         - containerPort: 8081
       imagePullSecrets:
@@ -31,5 +31,5 @@ spec:
     protocol: TCP
   type: NodePort
   selector:
-    app: api
+  - app: api
 

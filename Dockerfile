@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
-ENV USERNAME=shami
+ENV USERNAME=Aurora
 
 COPY . .
 
